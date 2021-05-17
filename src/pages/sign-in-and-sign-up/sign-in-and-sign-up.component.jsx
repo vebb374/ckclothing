@@ -1,7 +1,12 @@
 import React from "react";
+import Signin from "../../components/signin/signin.component";
 
 function Signinandout() {
-  return <div></div>;
+  return (
+    <div className="Signinandout">
+      <Signin></Signin>
+    </div>
+  );
 }
 
 export default Signinandout;
