@@ -1,7 +1,10 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 1rem 1.5rem;
   font-family: "Open Sans Condensed", sans-serif;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
 
 code {
