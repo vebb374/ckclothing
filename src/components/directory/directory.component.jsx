@@ -7,14 +7,8 @@ export class Directory extends Component {
   render() {
     return (
       <div className="directory-menu">
-        {sections.map(({ title, imageUrl, id, linkUrl, size }) => (
-          <Menuitem
-            key={id}
-            title={title}
-            imageUrl={imageUrl}
-            size={size}
-            linkUrl={linkUrl}
-          ></Menuitem>
+        {sections.map(({ id, ...otherprops }) => (
+          <Menuitem key={id} {...otherprops}></Menuitem>
         ))}
       </div>
     );
