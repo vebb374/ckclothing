@@ -5,7 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Shoppage from "./pages/shop/shoppage.component.jsx";
 import Header from "./components/header/header.component";
 import Signinandout from "./pages/sign-in-and-sign-up/sign-in-and-sign-up.component";
-import { auth } from "./firebase/firebase.utility";
+import { auth, createuser } from "./firebase/firebase.utility";
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +17,21 @@ class App extends Component {
   }
   unsubscribefromauth = null;
   componentDidMount() {
-    this.unsubscribefromauth = auth.onAuthStateChanged((user) => {
-      this.setState({ currentuser: user });
-      console.log(this.state.currentuser);
+    this.unsubscribefromauth = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        const userref = await createuser(user);
+
+        userref.onSnapshot((snapshot) => {
+          this.setState({
+            currentuser: {
+              id: snapshot.id,
+              ...snapshot.data(),
+            },
+          });
+        });
+      } else {
+        this.setState({ currentuser: user });
+      }
     });
   }
   componentWillUnmount() {

@@ -7,7 +7,9 @@ function Header({ user }) {
   return (
     <div className="header">
       <div className="logo-container">
-        <Logo></Logo>
+        <Link to="/" className="option">
+          <Logo></Logo>
+        </Link>
       </div>
 
       <div className="options">
