@@ -34,7 +34,7 @@ export class Signup extends Component {
         Email,
         Password
       );
-      await createuser(user, displayName);
+      await createuser(user, { displayName });
       this.setState({
         displayName: "",
         Email: "",

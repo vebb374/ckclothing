@@ -22,12 +22,15 @@ class App extends Component {
         const userref = await createuser(user);
 
         userref.onSnapshot((snapshot) => {
-          this.setState({
-            currentuser: {
-              id: snapshot.id,
-              ...snapshot.data(),
+          this.setState(
+            {
+              currentuser: {
+                id: snapshot.id,
+                ...snapshot.data(),
+              },
             },
-          });
+            () => console.log(this.state)
+          );
         });
       } else {
         this.setState({ currentuser: user });
