@@ -4,7 +4,10 @@ import { Link } from "react-router-dom";
 import { auth } from "../../firebase/firebase.utility";
 import "./header.styles.scss";
 import { connect } from "react-redux";
-function Header({ currentUser }) {
+import Carticon from "../cart-icon/cart-icon.component";
+import Cartdropdown from "../cart-dropdown/cart-dropdown.component";
+import ToggleCart from "../../redux/cart/cart.actions";
+function Header({ currentUser, hidden, ToggleCart }) {
   return (
     <div className="header">
       <div className="logo-container">
@@ -29,12 +32,19 @@ function Header({ currentUser }) {
             SIGN IN
           </Link>
         )}
+        <Carticon onClick={ToggleCart}></Carticon>
       </div>
+      {hidden ? null : <Cartdropdown></Cartdropdown>}
     </div>
   );
 }
 
 const mapStateToProps = (state) => ({
   currentUser: state.user.currentuser,
+  hidden: state.cart.hidden,
 });
-export default connect(mapStateToProps)(Header);
+
+const mapDispatchToProps = (dispatch) => ({
+  ToggleCart: () => dispatch(ToggleCart()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
