@@ -3,7 +3,7 @@ import Forminput from "../form-input/form-input.component";
 import Custombutton from "../custom-button/custom-button.component";
 import "./signin.styles.scss";
 import { auth, GoogleSignIn } from "../../firebase/firebase.utility";
-import { withRouter } from "react-router-dom";
+
 class Signin extends Component {
   constructor(props) {
     super(props);
@@ -24,7 +24,6 @@ class Signin extends Component {
     }
 
     this.setState({ email: "", password: "" });
-    this.props.history.push("/");
   };
 
   handleChange = (event) => {
@@ -68,4 +67,4 @@ class Signin extends Component {
   }
 }
 
-export default withRouter(Signin);
+export default Signin;
