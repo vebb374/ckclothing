@@ -6,8 +6,7 @@ import "./header.styles.scss";
 import { connect } from "react-redux";
 import Carticon from "../cart-icon/cart-icon.component";
 import Cartdropdown from "../cart-dropdown/cart-dropdown.component";
-import ToggleCart from "../../redux/cart/cart.actions";
-function Header({ currentUser, hidden, ToggleCart }) {
+function Header({ currentUser, hidden }) {
   return (
     <div className="header">
       <div className="logo-container">
@@ -32,7 +31,7 @@ function Header({ currentUser, hidden, ToggleCart }) {
             SIGN IN
           </Link>
         )}
-        <Carticon onClick={ToggleCart}></Carticon>
+        <Carticon></Carticon>
       </div>
       {hidden ? null : <Cartdropdown></Cartdropdown>}
     </div>
@@ -44,7 +43,4 @@ const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  ToggleCart: () => dispatch(ToggleCart()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps)(Header);

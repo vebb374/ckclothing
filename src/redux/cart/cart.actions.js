@@ -1,6 +1,9 @@
 import CartActions from "./cart.types";
-const ToggleCart = () => ({
+export const ToggleCart = () => ({
   type: CartActions.ToggleCart,
 });
 
-export default ToggleCart;
+export const addItem = (item) => ({
+  type: CartActions.AddItem,
+  payload: item,
+});
