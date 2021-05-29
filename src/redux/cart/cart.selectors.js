@@ -6,3 +6,6 @@ export const Hidden = createSelector([cartstate], (cart) => cart.hidden);
 export const CartCount = createSelector(CartItems, (items) =>
   items.reduce((acc, item) => acc + item.quantity, 0)
 );
+export const CartTotal = createSelector(CartItems, (items) =>
+  items.reduce((acc, item) => acc + item.quantity * item.price, 0)
+);

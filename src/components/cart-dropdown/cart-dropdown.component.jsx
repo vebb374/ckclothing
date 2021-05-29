@@ -4,16 +4,26 @@ import "./cart-dropdown.styles.scss";
 import { connect } from "react-redux";
 import Cartitem from "../cart-item/cart-item.componenct";
 import { CartItems } from "../../redux/cart/cart.selectors";
+import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
-function Cartdropdown({ cartitems }) {
+import { ToggleCart } from "../../redux/cart/cart.actions";
+function Cartdropdown({ cartitems, dispatch }) {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {cartitems.map(({ id, ...otherprops }) => (
-          <Cartitem key={id} {...otherprops}></Cartitem>
-        ))}
+        {cartitems.length ? (
+          cartitems.map(({ id, ...otherprops }) => (
+            <Cartitem key={id} {...otherprops}></Cartitem>
+          ))
+        ) : (
+          <span className="empty-cart">Add Some Items To Cart</span>
+        )}
       </div>
-      <Custombutton>GO TO CHECKOUT</Custombutton>
+      <Link to={"/checkout"}>
+        <Custombutton onClick={() => dispatch(ToggleCart())}>
+          GO TO CHECKOUT
+        </Custombutton>
+      </Link>
     </div>
   );
 }
