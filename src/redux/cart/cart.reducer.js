@@ -25,7 +25,7 @@ const Cartreducer = (state = InitialState, action) => {
         cartitems: state.cartitems.filter((c) => action.payload.id !== c.id),
       };
     default:
-      return { ...state };
+      return state;
   }
 };
 
